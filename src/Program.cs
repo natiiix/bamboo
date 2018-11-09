@@ -9,9 +9,9 @@ namespace Bamboo
     {
         private static void Main(string[] args)
         {
-            if (args.Length == 1)
+            if (args.Length >= 1)
             {
-                new Runtime(ParseCommands(args[0])).Run();
+                new Runtime(ParseCommands(args[0])).Run(args.Skip(1).Select(x => Variable.Parse(x)).ToArray());
             }
         }
 

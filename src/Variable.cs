@@ -1,11 +1,12 @@
+using System;
+
 namespace Bamboo
 {
     public abstract class Variable
     {
-        public static bool TryParse(string str, out Variable value)
+        public static Variable Parse(string str)
         {
-            value = null;
-            return false;
+            throw new ArgumentException(str);
         }
     }
 }

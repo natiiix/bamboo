@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Bamboo
@@ -21,7 +22,7 @@ namespace Bamboo
                     break;
             }
 
-            return null;
+            throw new ArgumentException(str);
         }
     }
 }
