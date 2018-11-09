@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace Bamboo
 {
-    public class Program
+    public sealed class Program
     {
         private static void Main(string[] args)
         {
             if (args.Length == 1)
             {
-
+                new Runtime(ParseCommands(args[0])).Run();
             }
         }
 
