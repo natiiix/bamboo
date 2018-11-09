@@ -11,30 +11,30 @@ namespace Bamboo
         {
             if (args.Length >= 1)
             {
-                new Runtime(ParseCommands(args[0])).Run(args.Skip(1).Select(x => Variable.Parse(x)).ToArray());
+                new Runtime(ParseOperations(args[0])).Run(args.Skip(1).Select(x => Variable.Parse(x)).ToArray());
             }
         }
 
-        private static List<Command> ParseCommands(string filePath)
+        private static List<Operation> ParseOperations(string filePath)
         {
             if (!File.Exists(filePath))
             {
                 throw new FileNotFoundException(filePath);
             }
 
-            List<Command> commands = new List<Command>();
+            List<Operation> operations = new List<Operation>();
 
             foreach (string line in File.ReadLines(filePath))
             {
-                Command cmd = Command.Parse(line);
+                Operation op = Operation.Parse(line);
 
-                if (cmd != null)
+                if (op != null)
                 {
-                    commands.Add(cmd);
+                    operations.Add(op);
                 }
             }
 
-            return commands;
+            return operations;
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Bamboo
 {
-    public abstract class Command
+    public abstract class Operation
     {
         public abstract bool Execute(RuntimeState state);
 
-        public static Command Parse(string str)
+        public static Operation Parse(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {
@@ -19,10 +19,10 @@ namespace Bamboo
             switch (lower)
             {
                 case "print":
-                    return new PrintCommand();
+                    return new PrintOperation();
 
                 default:
-                    return new PushCommand(Variable.Parse(str));
+                    return new PushOperation(Variable.Parse(str));
             }
         }
     }

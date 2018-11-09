@@ -5,7 +5,7 @@ namespace Bamboo
     public sealed class RuntimeState
     {
         public List<Variable> Stack { get; private set; }
-        public int CommandIndex { get; set; }
+        public int OperationIndex { get; set; }
 
         public RuntimeState(params Variable[] args)
         {
@@ -15,7 +15,7 @@ namespace Bamboo
         public void Reset(params Variable[] args)
         {
             Stack = new List<Variable>(args);
-            CommandIndex = 0;
+            OperationIndex = 0;
         }
     }
 }

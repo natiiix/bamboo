@@ -1,10 +1,10 @@
 namespace Bamboo
 {
-    public sealed class PushCommand : Command
+    public sealed class PushOperation : Operation
     {
         private Variable Value { get; }
 
-        public PushCommand(Variable var)
+        public PushOperation(Variable var)
         {
             Value = var;
         }
@@ -12,7 +12,7 @@ namespace Bamboo
         public override bool Execute(RuntimeState state)
         {
             state.Stack.Add(Value);
-            state.CommandIndex++;
+            state.OperationIndex++;
             return true;
         }
     }

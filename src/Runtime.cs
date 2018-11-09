@@ -4,16 +4,16 @@ namespace Bamboo
 {
     public sealed class Runtime
     {
-        private List<Command> Commands { get; }
+        private List<Operation> Operations { get; }
 
-        public Runtime(List<Command> commands)
+        public Runtime(List<Operation> operations)
         {
-            Commands = commands;
+            Operations = operations;
         }
 
         public void Run(params Variable[] args)
         {
-            for (RuntimeState state = new RuntimeState(args); state.CommandIndex < Commands.Count && Commands[state.CommandIndex].Execute(state);) ;
+            for (RuntimeState state = new RuntimeState(args); state.OperationIndex < Operations.Count && Operations[state.OperationIndex].Execute(state);) ;
         }
     }
 }
