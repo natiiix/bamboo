@@ -18,11 +18,12 @@ namespace Bamboo
 
             switch (lower)
             {
-                default:
-                    break;
-            }
+                case "print":
+                    return new PrintCommand();
 
-            throw new ArgumentException(str);
+                default:
+                    return new PushCommand(Variable.Parse(str));
+            }
         }
     }
 }
