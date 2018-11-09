@@ -13,5 +13,7 @@ namespace Bamboo
 
             throw new ArgumentException(str);
         }
+
+        public abstract override string ToString();
     }
 }
