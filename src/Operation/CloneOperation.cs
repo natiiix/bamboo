@@ -4,12 +4,8 @@ namespace Bamboo
 {
     public sealed class CloneOperation : Operation
     {
-        private Variable Value { get; }
-
-        public CloneOperation(Variable var)
-        {
-            Value = var;
-        }
+        public const string Symbol = "$";
+        public const string Name = "clone";
 
         public override bool Execute(RuntimeState state)
         {
@@ -19,7 +15,6 @@ namespace Bamboo
             return true;
         }
 
-        public override string ToGolf() =>
-            Value.ToGolf();
+        public override string ToGolf() => Symbol;
     }
 }

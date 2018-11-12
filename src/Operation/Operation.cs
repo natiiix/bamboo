@@ -21,6 +21,9 @@ namespace Bamboo
                 case PrintOperation.Name:
                     return new PrintOperation();
 
+                case CloneOperation.Name:
+                    return new CloneOperation();
+
                 case NegateOperation.Name:
                     return new NegateOperation();
 
