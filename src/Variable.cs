@@ -14,6 +14,8 @@ namespace Bamboo
             throw new ArgumentException(str);
         }
 
+        public abstract void Negate();
+
         public abstract override string ToString();
 
         public abstract string ToGolf();

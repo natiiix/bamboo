@@ -4,12 +4,15 @@ namespace Bamboo
 {
     public sealed class IntegerVariable : Variable
     {
-        public int Value { get; }
+        public int Value { get; private set; }
 
         public IntegerVariable(int value)
         {
             Value = value;
         }
+
+        public override void Negate() =>
+            Value = -Value;
 
         public override string ToString() =>
             Value.ToString();

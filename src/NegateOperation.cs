@@ -6,11 +6,14 @@ namespace Bamboo
 {
     public sealed class NegateOperation : Operation
     {
-        public static string Symbol => "~";
+        public const string Symbol = "~";
+        public const string Name = "negate";
 
         public override bool Execute(RuntimeState state)
         {
-            throw new NotImplementedException();
+            state.Stack.Last().Negate();
+            state.OperationIndex++;
+            return true;
         }
 
         public override string ToGolf() => Symbol;

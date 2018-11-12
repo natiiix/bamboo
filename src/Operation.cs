@@ -18,8 +18,11 @@ namespace Bamboo
 
             switch (lower)
             {
-                case "print":
+                case PrintOperation.Name:
                     return new PrintOperation();
+
+                case NegateOperation.Name:
+                    return new NegateOperation();
 
                 default:
                     return new PushOperation(Variable.Parse(str));

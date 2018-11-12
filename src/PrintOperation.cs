@@ -6,7 +6,8 @@ namespace Bamboo
 {
     public sealed class PrintOperation : Operation
     {
-        public static string Symbol => "p";
+        public const string Symbol = "p";
+        public const string Name = "print";
 
         public override bool Execute(RuntimeState state)
         {
