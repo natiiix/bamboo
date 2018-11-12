@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Bamboo
 {
-    public abstract class Operation
+    public abstract class Operation : IGolfable
     {
         public abstract bool Execute(RuntimeState state);
 
@@ -25,5 +25,7 @@ namespace Bamboo
                     return new PushOperation(Variable.Parse(str));
             }
         }
+
+        public abstract string ToGolf();
     }
 }

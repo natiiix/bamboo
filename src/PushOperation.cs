@@ -15,5 +15,8 @@ namespace Bamboo
             state.OperationIndex++;
             return true;
         }
+
+        public override string ToGolf() =>
+            Value.ToGolf();
     }
 }

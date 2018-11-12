@@ -2,7 +2,7 @@ using System;
 
 namespace Bamboo
 {
-    public abstract class Variable
+    public abstract class Variable : IGolfable
     {
         public static Variable Parse(string str)
         {
@@ -15,5 +15,7 @@ namespace Bamboo
         }
 
         public abstract override string ToString();
+
+        public abstract string ToGolf();
     }
 }
