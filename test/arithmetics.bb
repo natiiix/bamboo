@@ -1,0 +1,17 @@
+100
+print
+20
+add
+print
+70
+subtract
+print
+10
+multiply
+print
+20
+divide
+print
+3
+modulo
+print
