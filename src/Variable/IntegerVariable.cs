@@ -11,9 +11,6 @@ namespace Bamboo
             Value = value;
         }
 
-        public override void Negate() =>
-            Value = -Value;
-
         public override string ToString() =>
             Value.ToString();
 
@@ -23,5 +20,35 @@ namespace Bamboo
             string inBase = BaseConverter.ToBase(negative ? -Value : Value);
             return inBase.Length.ToString() + inBase + (negative ? NegateOperation.Symbol : string.Empty);
         }
+
+        public override void Negate() =>
+            Value = -Value;
+
+        private void PerformAirthmeticOperation(Variable value, Action<int> actionInt)
+        {
+            if (value is IntegerVariable intValue)
+            {
+                actionInt(intValue.Value);
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
+        }
+
+        public override void Add(Variable value) =>
+            PerformAirthmeticOperation(value, intValue => Value += intValue);
+
+        public override void Subtract(Variable value) =>
+            PerformAirthmeticOperation(value, intValue => Value -= intValue);
+
+        public override void Multiply(Variable value) =>
+            PerformAirthmeticOperation(value, intValue => Value *= intValue);
+
+        public override void Divide(Variable value) =>
+            PerformAirthmeticOperation(value, intValue => Value /= intValue);
+
+        public override void Modulo(Variable value) =>
+            PerformAirthmeticOperation(value, intValue => Value %= intValue);
     }
 }

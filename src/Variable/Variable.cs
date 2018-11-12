@@ -14,10 +14,15 @@ namespace Bamboo
             throw new ArgumentException(str);
         }
 
-        public abstract void Negate();
-
         public abstract override string ToString();
 
         public abstract string ToGolf();
+
+        public abstract void Negate();
+        public abstract void Add(Variable value);
+        public abstract void Subtract(Variable value);
+        public abstract void Multiply(Variable value);
+        public abstract void Divide(Variable value);
+        public abstract void Modulo(Variable value);
     }
 }
