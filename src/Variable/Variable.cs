@@ -18,6 +18,7 @@ namespace Bamboo
 
         public abstract string ToGolf();
 
+        public abstract Variable Clone();
         public abstract void Negate();
         public abstract void Add(Variable value);
         public abstract void Subtract(Variable value);

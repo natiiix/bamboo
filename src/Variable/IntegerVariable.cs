@@ -21,6 +21,9 @@ namespace Bamboo
             return inBase.Length.ToString() + inBase + (negative ? NegateOperation.Symbol : string.Empty);
         }
 
+        public override Variable Clone() =>
+            new IntegerVariable(Value);
+
         public override void Negate() =>
             Value = -Value;
 
