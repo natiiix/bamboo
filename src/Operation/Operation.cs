@@ -30,6 +30,40 @@ namespace Bamboo
             return operations;
         }
 
+        public static List<Operation> ParseGolfedOperations(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException(filePath);
+            }
+
+            string code = File.ReadAllText(filePath);
+
+            List<Operation> operations = new List<Operation>();
+
+            for (int i = 0; i < code.Length; i++)
+            {
+                char c = code[i];
+
+                if (char.IsDigit(c))
+                {
+                    int len = int.Parse(c.ToString());
+                    string str = code.Substring(i + 1, len);
+
+                    int value = BaseConverter.FromBase(str);
+                    operations.Add(new PushOperation(new IntegerVariable(value)));
+
+                    i += len;
+                }
+                else
+                {
+                    operations.Add(ParseGolfed(c));
+                }
+            }
+
+            return operations;
+        }
+
         private static Operation ParseVerbose(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
@@ -48,6 +82,20 @@ namespace Bamboo
             else if (lower == DivideOperation.Info.Name) return new DivideOperation();
             else if (lower == ModuloOperation.Info.Name) return new ModuloOperation();
             else return new PushOperation(Variable.Parse(str));
+        }
+
+        private static Operation ParseGolfed(char c)
+        {
+            if (c == PrintOperation.Info.Symbol) return new PrintOperation();
+            else if (c == CloneOperation.Info.Symbol) return new CloneOperation();
+            else if (c == NegateOperation.Info.Symbol) return new NegateOperation();
+            else if (c == AddOperation.Info.Symbol) return new AddOperation();
+            else if (c == SubtractOperation.Info.Symbol) return new SubtractOperation();
+            else if (c == MultiplyOperation.Info.Symbol) return new MultiplyOperation();
+            else if (c == DivideOperation.Info.Symbol) return new DivideOperation();
+            else if (c == ModuloOperation.Info.Symbol) return new ModuloOperation();
+
+            throw new ArgumentException(c.ToString());
         }
 
         public abstract string ToGolf();

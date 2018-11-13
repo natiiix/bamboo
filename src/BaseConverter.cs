@@ -24,7 +24,7 @@ namespace Bamboo
                 remainder /= BASE_VALUE;
 
                 char digitChar = (char)(MIN_PRINTABLE_CHAR + digitValue);
-                str += digitChar;
+                str = digitChar + str;
             }
 
             return str;
