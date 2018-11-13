@@ -21,7 +21,7 @@ namespace Bamboo
 
                     case "-r":
                     case "--run":
-                        new Runtime(ParseVerboseOperations(args[1])).Run(runtimeArgs);
+                        new Runtime(Operation.ParseVerboseOperations(args[1])).Run(runtimeArgs);
                         break;
 
                     case "-g":
@@ -32,28 +32,6 @@ namespace Bamboo
                         break;
                 }
             }
-        }
-
-        private static List<Operation> ParseVerboseOperations(string filePath)
-        {
-            if (!File.Exists(filePath))
-            {
-                throw new FileNotFoundException(filePath);
-            }
-
-            List<Operation> operations = new List<Operation>();
-
-            foreach (string line in File.ReadLines(filePath))
-            {
-                Operation op = Operation.ParseVerbose(line);
-
-                if (op != null)
-                {
-                    operations.Add(op);
-                }
-            }
-
-            return operations;
         }
     }
 }
