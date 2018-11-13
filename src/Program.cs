@@ -9,13 +9,32 @@ namespace Bamboo
     {
         private static void Main(string[] args)
         {
-            if (args.Length >= 1)
+            if (args.Length >= 2)
             {
-                new Runtime(ParseOperations(args[0])).Run(args.Skip(1).Select(x => Variable.Parse(x)).ToArray());
+                Variable[] runtimeArgs = args.Skip(2).Select(x => Variable.Parse(x)).ToArray();
+
+                switch (args[0])
+                {
+                    case "-c":
+                    case "--compile":
+                        break;
+
+                    case "-r":
+                    case "--run":
+                        new Runtime(ParseVerboseOperations(args[1])).Run(runtimeArgs);
+                        break;
+
+                    case "-g":
+                    case "--golf":
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
 
-        private static List<Operation> ParseOperations(string filePath)
+        private static List<Operation> ParseVerboseOperations(string filePath)
         {
             if (!File.Exists(filePath))
             {
@@ -26,7 +45,7 @@ namespace Bamboo
 
             foreach (string line in File.ReadLines(filePath))
             {
-                Operation op = Operation.Parse(line);
+                Operation op = Operation.ParseVerbose(line);
 
                 if (op != null)
                 {

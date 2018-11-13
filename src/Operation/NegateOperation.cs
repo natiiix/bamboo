@@ -6,8 +6,7 @@ namespace Bamboo
 {
     public sealed class NegateOperation : Operation
     {
-        public const string Symbol = "~";
-        public const string Name = "negate";
+        public static readonly OperationInfo Info = new OperationInfo("negate", '~');
 
         public override bool Execute(RuntimeState state)
         {
@@ -16,6 +15,6 @@ namespace Bamboo
             return true;
         }
 
-        public override string ToGolf() => Symbol;
+        public override string ToGolf() => Info.Symbol.ToString();
     }
 }

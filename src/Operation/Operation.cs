@@ -7,7 +7,7 @@ namespace Bamboo
     {
         public abstract bool Execute(RuntimeState state);
 
-        public static Operation Parse(string str)
+        public static Operation ParseVerbose(string str)
         {
             if (string.IsNullOrWhiteSpace(str))
             {

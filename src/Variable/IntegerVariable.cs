@@ -18,7 +18,7 @@ namespace Bamboo
         {
             bool negative = Value < 0;
             string inBase = BaseConverter.ToBase(negative ? -Value : Value);
-            return inBase.Length.ToString() + inBase + (negative ? NegateOperation.Symbol : string.Empty);
+            return inBase.Length.ToString() + inBase + (negative ? NegateOperation.Info.Symbol.ToString() : string.Empty);
         }
 
         public override Variable Clone() =>

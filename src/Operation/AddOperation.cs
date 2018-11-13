@@ -6,8 +6,7 @@ namespace Bamboo
 {
     public sealed class AddOperation : Operation
     {
-        public const string Symbol = "+";
-        public const string Name = "add";
+        public static readonly OperationInfo Info = new OperationInfo("add", '+');
 
         public override bool Execute(RuntimeState state)
         {
@@ -17,6 +16,6 @@ namespace Bamboo
             return true;
         }
 
-        public override string ToGolf() => Symbol;
+        public override string ToGolf() => Info.Symbol.ToString();
     }
 }

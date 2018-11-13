@@ -6,8 +6,7 @@ namespace Bamboo
 {
     public sealed class PrintOperation : Operation
     {
-        public const string Symbol = "p";
-        public const string Name = "print";
+        public static readonly OperationInfo Info = new OperationInfo("print", 'p');
 
         public override bool Execute(RuntimeState state)
         {
@@ -16,6 +15,6 @@ namespace Bamboo
             return true;
         }
 
-        public override string ToGolf() => Symbol;
+        public override string ToGolf() => Info.Symbol.ToString();
     }
 }
