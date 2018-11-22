@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Bamboo
 {
@@ -14,11 +16,16 @@ namespace Bamboo
         public override string ToString() =>
             Value.ToString();
 
-        public override string ToGolf()
+        public override byte[] ToGolf()
         {
-            bool negative = Value < 0;
-            string inBase = BaseConverter.ToBase(negative ? -Value : Value);
-            return inBase.Length.ToString() + inBase + (negative ? NegateOperation.Info.Symbol.ToString() : string.Empty);
+            List<byte> bytes = new List<byte>();
+
+            IEnumerable<byte> converted = BitConverter.GetBytes(Value).TakeWhile(x => x != 0);
+
+            bytes.Add((byte)converted.Count().ToString()[0]);
+            bytes.AddRange(converted);
+
+            return bytes.ToArray();
         }
 
         public override Variable Clone() =>

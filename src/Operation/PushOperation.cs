@@ -16,7 +16,7 @@ namespace Bamboo
             return true;
         }
 
-        public override string ToGolf() =>
+        public override byte[] ToGolf() =>
             Value.ToGolf();
     }
 }

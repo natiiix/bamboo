@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 
 namespace Bamboo
@@ -37,20 +38,31 @@ namespace Bamboo
                 throw new FileNotFoundException(filePath);
             }
 
-            string code = File.ReadAllText(filePath);
+            byte[] code = File.ReadAllBytes(filePath);
 
             List<Operation> operations = new List<Operation>();
 
             for (int i = 0; i < code.Length; i++)
             {
-                char c = code[i];
+                byte b = code[i];
+                char c = (char)b;
 
                 if (char.IsDigit(c))
                 {
                     int len = int.Parse(c.ToString());
-                    string str = code.Substring(i + 1, len);
+                    byte[] sub = new byte[sizeof(int)];
 
-                    int value = BaseConverter.FromBase(str);
+                    for (int j = 0; j < len; j++)
+                    {
+                        sub[j] = code[i + 1 + j];
+                    }
+
+                    for (int j = len; j < sub.Length; j++)
+                    {
+                        sub[j] = 0;
+                    }
+
+                    int value = BitConverter.ToInt32(sub);
                     operations.Add(new PushOperation(new IntegerVariable(value)));
 
                     i += len;
@@ -98,6 +110,6 @@ namespace Bamboo
             throw new ArgumentException(c.ToString());
         }
 
-        public abstract string ToGolf();
+        public abstract byte[] ToGolf();
     }
 }

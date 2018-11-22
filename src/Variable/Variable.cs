@@ -16,7 +16,7 @@ namespace Bamboo
 
         public abstract override string ToString();
 
-        public abstract string ToGolf();
+        public abstract byte[] ToGolf();
 
         public abstract Variable Clone();
         public abstract void Negate();

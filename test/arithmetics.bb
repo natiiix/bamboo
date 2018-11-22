@@ -15,3 +15,5 @@ print
 3
 modulo
 print
+0
+print

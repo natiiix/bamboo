@@ -16,16 +16,16 @@ namespace Bamboo
             for (RuntimeState state = new RuntimeState(args); state.OperationIndex < Operations.Count && Operations[state.OperationIndex].Execute(state);) ;
         }
 
-        public string ToGolf()
+        public byte[] ToGolf()
         {
-            string str = string.Empty;
+            List<byte> bytes = new List<byte>();
 
             foreach (Operation op in Operations)
             {
-                str += op.ToGolf();
+                bytes.AddRange(op.ToGolf());
             }
 
-            return str;
+            return bytes.ToArray();
         }
     }
 }

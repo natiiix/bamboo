@@ -2,6 +2,6 @@ namespace Bamboo
 {
     public interface IGolfable
     {
-        string ToGolf();
+        byte[] ToGolf();
     }
 }

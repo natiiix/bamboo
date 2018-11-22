@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -20,7 +20,7 @@ namespace Bamboo
                 case "--compile":
                     if (args.Length >= 3)
                     {
-                        File.WriteAllText(args[2], new Runtime(Operation.ParseVerboseOperations(args[1])).ToGolf());
+                        File.WriteAllBytes(args[2], new Runtime(Operation.ParseVerboseOperations(args[1])).ToGolf());
                     }
                     break;
 
